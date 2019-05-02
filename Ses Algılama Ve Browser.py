@@ -20,7 +20,7 @@ import re
 
 weat = "hava durumu"
 ara = "internette ara"
-youtube = ""
+youtube = "youtube"
 bye = "güle güle"
 
 
@@ -72,10 +72,10 @@ if __name__ == '__main__':
         with sr.Microphone() as source:
             audio = r.listen(source,timeout=None)
             try:
-                metin = r.recognize_google(audio,language="tr-TR",phrase_time_limit=5)
+                metin = r.recognize_google(audio,language="tr-TR")
                 print("Sen söyledin: " + metin)
                 if weat in metin.lower():
-                    print("Hangi şehrin hava durumunu merak ediyorsun?")
+                    
                     speak("Hangi şehrin hava durumunu merak ediyorsun?")
                     audio2 = r.listen(source,timeout=None,phrase_time_limit=5)
                     try:
@@ -98,11 +98,11 @@ if __name__ == '__main__':
                     except sr.RequestError:
                         print("Bad Request")
                 elif "güle güle" in metin.lower():
-                    print("Sistem: Asistan arka plana alındı.\n")
+                    speak("Sistem: Asistan arka plana alındı.\n")
                     os.chdir(yer)
                     main()
                 elif ara in metin.lower():
-                    print("İnternette ne aramamı istiyorsun?")
+                    speak("İnternette ne aramamı istiyorsun?")
                     audio2 = r.listen(source,timeout=None)
                     try:
                         metin = r.recognize_google(audio2,language="tr-TR")
